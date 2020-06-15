@@ -1,0 +1,4 @@
+name: FormBuilder
+main: form_builder\Main
+version: 1.0.0
+api: 3.0.0

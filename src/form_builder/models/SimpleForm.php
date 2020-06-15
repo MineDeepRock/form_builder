@@ -6,9 +6,10 @@ namespace form_builder\models;
 
 use Closure;
 use form_builder\models\simple_form_elements\SimpleFormButton;
+use pocketmine\form\Form;
 use pocketmine\Player;
 
-class SimpleForm extends FormScheme
+class SimpleForm extends FormScheme implements Form
 {
     /**
      * @var string

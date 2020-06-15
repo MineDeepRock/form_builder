@@ -23,7 +23,7 @@ class SimpleFormButton extends FormElement
      */
     private $onClicked;
 
-    public function __construct(string $text, SimpleFormImage $image, Closure $onClicked) {
+    public function __construct(string $text, ?SimpleFormImage $image, Closure $onClicked) {
         $this->text = $text;
         $this->image = $image;
         $this->onClicked = $onClicked;
@@ -31,5 +31,14 @@ class SimpleFormButton extends FormElement
 
     public function click(Player $player): void {
         ($this->onClicked)($player);
+    }
+
+    public function toArray(): array {
+        $json = ['text' => $this->text];
+        if ($this->image !== null) {
+            $json['image'] = $this->image->toArray();
+        }
+
+        return $json;
     }
 }

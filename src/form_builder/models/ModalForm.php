@@ -16,17 +16,22 @@ class ModalForm extends FormScheme implements Form
      */
     protected $content;
     /**
-     * @var ModalFormButton[]
+     * @var ModalFormButton
      */
-    protected $buttons;
+    protected $button1;
+    /**
+     * @var ModalFormButton
+     */
+    protected $button2;
     /**
      * @var Closure
      */
     protected $onClosed;
 
-    public function __construct(string $title, string $content, array $buttons, Closure $onClosed) {
+    public function __construct(string $title, string $content, ModalFormButton $button1, ModalFormButton $button2, Closure $onClosed) {
         $this->content = $content;
-        $this->buttons = $buttons;
+        $this->button1 = $button1;
+        $this->button2 = $button2;
         $this->onClosed = $onClosed;
         parent::__construct(FormType::Modal(), $title);
     }
@@ -35,18 +40,18 @@ class ModalForm extends FormScheme implements Form
         if ($data === null) {
             ($this->onClosed)($player);
         }
-        $this->buttons[$data]->click($player);
+        if ($data) {
+            $this->button1->click($player);
+        } else {
+            $this->button2->click($player);
+        }
     }
 
     public function jsonSerialize() {
         $json = parent::toArray();
         $json['content'] = $this->content;
-
-        $index = 0;
-        foreach ($this->buttons as $button) {
-            $json['button' . $index] = $button->getText();
-            $index++;
-        }
+        $json['button1'] = $this->button1->getText();
+        $json['button2'] = $this->button2->getText();
 
         return $json;
     }

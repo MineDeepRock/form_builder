@@ -48,7 +48,7 @@ class CustomFomSample extends CustomForm
         // TODO: Implement onClickCloseButton() method.
     }
 
-    function onSend(Player $player): void {
+    function onSubmit(Player $player): void {
         $name = $this->name->getResult();
         $speciality = $this->speciality->getResult();
         $age = $this->age->getResult();

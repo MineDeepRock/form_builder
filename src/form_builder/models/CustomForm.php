@@ -20,7 +20,7 @@ abstract class CustomForm extends FormScheme implements Form
         parent::__construct(FormType::Custom(), $title);
     }
 
-    abstract function onSend(Player $player): void;
+    abstract function onSubmit(Player $player): void;
 
     public function handleResponse(Player $player, $data): void {
         if ($data === null) {

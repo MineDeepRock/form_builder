@@ -20,6 +20,23 @@ class CustomFormElementType
         return new CustomFormElementType("input");
     }
 
+    static function Label() : CustomFormElementType {
+        return new CustomFormElementType("label");
+    }
+
+    static function Slider() : CustomFormElementType {
+        return new CustomFormElementType("slider");
+    }
+
+    static function StepSlider() : CustomFormElementType {
+        return new CustomFormElementType("step_slider");
+    }
+
+    static function Toggle() : CustomFormElementType {
+        return new CustomFormElementType("toggle");
+    }
+
+
     /**
      * @return string
      */

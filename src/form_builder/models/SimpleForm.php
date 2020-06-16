@@ -9,7 +9,7 @@ use form_builder\models\simple_form_elements\SimpleFormButton;
 use pocketmine\form\Form;
 use pocketmine\Player;
 
-class SimpleForm extends FormScheme implements Form
+abstract class SimpleForm extends FormScheme implements Form
 {
     /**
      * @var string
@@ -19,21 +19,18 @@ class SimpleForm extends FormScheme implements Form
      * @var SimpleFormButton[]
      */
     protected $buttons;
-    /**
-     * @var Closure
-     */
-    protected $onClosed;
 
-    public function __construct(string $title, string $content, array $buttons, Closure $onClosed) {
+
+    public function __construct(string $title, string $content, array $buttons) {
         $this->content = $content;
         $this->buttons = $buttons;
-        $this->onClosed = $onClosed;
         parent::__construct(FormType::Simple(), $title);
     }
 
     public function handleResponse(Player $player, $data): void {
         if ($data === null) {
-            ($this->onClosed)($player);
+            $this->onClickCloseButton($player);
+            return;
         }
         $this->buttons[$data]->click($player);
     }

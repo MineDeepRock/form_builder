@@ -4,7 +4,7 @@
 namespace form_builder\models;
 
 
-class FormElement
+abstract class FormElement
 {
 
 }

@@ -30,10 +30,10 @@ class SimpleFormSample extends SimpleForm
                         $player->sendMessage("No Image");
                     }
                 )
-            ],
-            function (pocketmine\Player $player) {
-                $player->sendMessage("Close The Form");
-            });
+            ]);
     }
 
+    function onClickCloseButton(Player $player): void {
+        $player->sendMessage("Close The Form");
+    }
 }

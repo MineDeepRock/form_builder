@@ -6,7 +6,7 @@ namespace form_builder\models\custom_form_elements;
 
 use form_builder\models\FormElement;
 
-class CustomFormElement extends FormElement
+abstract class CustomFormElement extends FormElement
 {
 
     /**
@@ -19,11 +19,15 @@ class CustomFormElement extends FormElement
     protected $type;
     protected $text;
 
+    protected $result;
+
     public function __construct(CustomFormElementType $type, string $text) {
         $this->id = uniqid();
         $this->type = $type;
         $this->text = $text;
     }
+
+    abstract function toArray(): array;
 
     /**
      * @return CustomFormElementType
@@ -44,5 +48,19 @@ class CustomFormElement extends FormElement
      */
     public function getId(): string {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResult() {
+        return $this->result;
+    }
+
+    /**
+     * @param mixed $result
+     */
+    public function setResult($result): void {
+        $this->result = $result;
     }
 }

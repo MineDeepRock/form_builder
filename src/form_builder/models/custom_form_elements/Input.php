@@ -20,4 +20,13 @@ class Input extends CustomFormElement
         $this->default = $default;
         parent::__construct(CustomFormElementType::Input(), $text);
     }
+
+    function toArray(): array {
+        return [
+            "type" => $this->type->getText(),
+            "text" => $this->text,
+            "placeholder" => $this->placeholder,
+            "default" => $this->default
+        ];
+    }
 }

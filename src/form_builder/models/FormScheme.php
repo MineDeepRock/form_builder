@@ -4,7 +4,9 @@
 namespace form_builder\models;
 
 
-class FormScheme
+use pocketmine\Player;
+
+abstract class FormScheme
 {
     /**
      * @var FormType
@@ -19,6 +21,8 @@ class FormScheme
         $this->type = $type;
         $this->title = $title;
     }
+
+    abstract function onClickCloseButton(Player $player): void;
 
     public function toArray(): array {
         return [

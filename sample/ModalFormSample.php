@@ -8,15 +8,22 @@ use pocketmine\Player;
 class ModalFormSample extends ModalForm
 {
     public function __construct() {
-        parent::__construct("ModalFormSample", "Do you like apple?",
-            new ModalFormButton("Yes",function (Player $player){
-                $player->sendMessage("Me too!");
-            }),
-            new ModalFormButton("No",function (Player $player){
-                $player->sendMessage("Why?");
-            }),
-            function(Player $player){
-                $player->sendMessage("Close The Form");
-            });
+        parent::__construct(
+            "ModalFormSample",
+            "Do you like apple?",
+            new ModalFormButton("Yes"),
+            new ModalFormButton("No"));
+    }
+
+    public function onClickButton1(Player $player): void {
+        $player->sendMessage("Me too!");
+    }
+
+    public function onClickButton2(Player $player): void {
+        $player->sendMessage("Why");
+    }
+
+    public function onClickCloseButton(Player $player): void {
+        $player->sendMessage("Close");
     }
 }

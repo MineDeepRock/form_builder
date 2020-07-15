@@ -33,7 +33,7 @@ abstract class CustomForm extends FormScheme implements Form
             $index++;
         }
 
-        $this->onSend($player);
+        $this->onSubmit($player);
     }
 
     public function jsonSerialize() {
